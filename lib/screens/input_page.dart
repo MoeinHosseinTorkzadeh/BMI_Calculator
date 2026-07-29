@@ -7,6 +7,7 @@ import '../constants.dart';
 import '../components/BottomButton.dart';
 import '../components/round_icon_button.dart';
 import 'package:bmi_calculator/calculator_brain.dart';
+import '../components/drawer_item.dart';
 
 //enum is used to make different options much more easier to understand in the code
 enum Gender { male, female }
@@ -27,6 +28,40 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
+      ),
+      drawer: Drawer(
+        child: Padding(
+          padding: EdgeInsetsGeometry.only(left: 20.0),
+          child: SizedBox(
+            height: 200.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                DrawerItem(
+                  itemIcon: Icons.history,
+                  nameItem: 'History',
+                  onPress: () {
+                    print('hello');
+                  },
+                ),
+                DrawerItem(
+                    itemIcon: Icons.category,
+                    nameItem: 'BMI Categories',
+                    onPress: () {}),
+                DrawerItem(
+                    itemIcon: Icons.tips_and_updates,
+                    nameItem: 'Health Tips',
+                    onPress: () {}),
+                DrawerItem(
+                    itemIcon: Icons.scale,
+                    nameItem: 'Units',
+                    onPress: () {}),
+              ],
+            ),
+          ),
+        ),
+        backgroundColor: kDrawerColor,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

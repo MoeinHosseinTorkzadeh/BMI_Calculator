@@ -5,6 +5,7 @@ const kBottomContainerHeight = 80.0;
 const kActiveCardColor = Color(0XFF1D1E33);
 const kInactiveCardColor = Color(0xFF111328);
 const kBottomContainerColor = Color(0xFFEB1555);
+const kDrawerColor = Color(0xf01C1E3F);
 
 const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
@@ -29,3 +30,6 @@ const kBMITextStyle =
     TextStyle(fontWeight: FontWeight.bold, fontSize: 100.0);
 
 const kBodyTextStyle = TextStyle(fontSize: 22.0);
+
+const kDrawerTextStyle =
+    TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
