@@ -42,20 +42,6 @@ Through this project, I practiced:
 - State management using `setState()`
 - Null safety concepts in Dart
 
-## 📂 Project Structure
-
-
-lib/
-│
-├── main.dart
-├── input_page.dart
-├── results_page.dart
-├── calculator_brain.dart
-├── reusable_card.dart
-├── icon_content.dart
-├── constants.dart
-└── components/
-
 
 ## 🚀 Getting Started
 
