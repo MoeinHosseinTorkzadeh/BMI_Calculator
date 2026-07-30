@@ -56,6 +56,7 @@ class DatabaseHelper {
   }
 
   /// the reason this function returns an integer is because sqflite package will return the id of row inserted
+  /// BELOW FUNCTION REFERS TO "C" from CRUD framework
   Future<int> insertBMI(BmiRecord record) async {
     /// Before anything else we need to create a connection to the database
     final databaseConnection = await instance
@@ -66,5 +67,20 @@ class DatabaseHelper {
       'bmi_history',
       record.toMap(),
     );
+  }
+
+  /// Below method is responsible for "R"
+  Future<List<BmiRecord>> getAllBMIRecords() async {
+    final databaseConnection = await instance.database;
+    final result = await databaseConnection.query('bmi_history');
+
+    List<BmiRecord> records = [];
+
+    for (var map in result) {
+      records.add(
+        BmiRecord.fromMap(map),
+      );
+    }
+    return records;
   }
 }
