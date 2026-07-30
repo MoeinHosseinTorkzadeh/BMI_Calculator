@@ -1,4 +1,7 @@
 class BmiRecord {
+  //BmiRecord class defines how BMI record looks like
+  //also converts them between Dart and SQLite
+
   //normal constructor
   BmiRecord(
       {this.id,
