@@ -25,6 +25,7 @@ class BmiRecord {
   //To make the object creation automatically we use factory constructor
   // but before we need to create a dictionary to get the data
   //below function converts dart objects to sql rows by returning a Map
+  //this function helps us to save data into SQLite
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -39,6 +40,7 @@ class BmiRecord {
   }
 
   //Creating a factory constructor to get data from sql rows
+  // This function helps us to read data from a database because flutter does not get the data received from SQLite
   factory BmiRecord.fromMap(Map<String, dynamic> map) {
     return BmiRecord(
         id: map['id'],
