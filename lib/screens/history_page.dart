@@ -1,20 +1,16 @@
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/database/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/components/bmi_history_card_details.dart';
 import '../database/bmi_model.dart';
 
-class HistoryPage extends StatefulWidget {
-  @override
-  State<HistoryPage> createState() => _HistoryPageState();
-}
-
-class _HistoryPageState extends State<HistoryPage> {
+class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BmiHistoryCard(),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'BMI HISTORY',
         ),
       ),
@@ -24,40 +20,52 @@ class _HistoryPageState extends State<HistoryPage> {
 
 class BmiHistoryCard extends StatelessWidget {
   //Instead of a normal list we use BmiRecord model we built to make the work much more simple
-  final List<BmiRecord> bmiRecords = [
-    BmiRecord(
-      bmi: 25.5,
-      category: 'Normal Weight',
-      height: 168.2,
-      weight: 71.2,
-      age: 21,
-      gender: 'Male',
-      date: '31 July 2026',
-    ),
-    BmiRecord(
-      bmi: 22.4,
-      category: 'Normal Weight',
-      height: 180.0,
-      weight: 72.2,
-      age: 21,
-      gender: 'Male',
-      date: '30 July 2026',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: bmiRecords.length,
-      itemBuilder: (context, index) {
-        return HistoryPageCardDetails(
-            bmi: bmiRecords[index].bmi,
-            category: bmiRecords[index].category,
-            height: bmiRecords[index].height,
-            weight: bmiRecords[index].weight,
-            age: bmiRecords[index].age,
-            date: bmiRecords[index].date,
-            gender: bmiRecords[index].gender);
+    return FutureBuilder<List<BmiRecord>>(
+      //since instance is global variable and belongs to the DatabaseHelper class we need to name DatabaseHelper class whenever we wanna use instance
+      future: DatabaseHelper.instance.getAllBMIRecords(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Error ${snapshot.error}'),
+          );
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (snapshot.hasData) {
+          final records = snapshot.data!;
+          if (records.isEmpty) {
+            return const Center(
+              child: Text('No Records!'),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: records.length,
+              itemBuilder: (context, index) {
+                return HistoryPageCardDetails(
+                  bmi: records[index].bmi,
+                  category: records[index].category,
+                  height: records[index].height,
+                  weight: records[index].weight,
+                  age: records[index].age,
+                  date: records[index].date,
+                  gender: records[index].gender,
+                );
+              },
+            );
+          }
+        }
+
+        return const Center(
+          child: Text('No BMI records found.'),
+        );
       },
     );
   }

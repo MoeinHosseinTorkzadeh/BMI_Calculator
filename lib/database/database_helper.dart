@@ -9,6 +9,7 @@ class DatabaseHelper {
   ///Here we are saying that create one single database helper object inside the class itself and name it as instance
   /// DatabaseHelper._init() => is a name constructor
   /// we call this named constructor after creating the object named instance because we wanna create it once
+  /// The reason we write static is because we wanna use it everywhere in the file and we say this variable belongs to the class rather than individual object
   static final DatabaseHelper instance = DatabaseHelper._init();
   DatabaseHelper._init();
 
@@ -72,11 +73,15 @@ class DatabaseHelper {
   /// Below method is responsible for "R"
   Future<List<BmiRecord>> getAllBMIRecords() async {
     final databaseConnection = await instance.database;
-    final result = await databaseConnection.query(
-        'bmi_history'); // this is equivalent to SELECT * FROM bmi_history
 
+    ///making a connection with database
+    final result = await databaseConnection.query('bmi_history');
+    // this is equivalent to SELECT * FROM bmi_history to get and display all data
+
+    ///empty list to add record while we loop through
     List<BmiRecord> records = [];
 
+    ///looping through the results we got from bmi history and storing them in the empty records list
     for (var map in result) {
       records.add(
         BmiRecord.fromMap(map),
