@@ -8,6 +8,7 @@ import '../components/BottomButton.dart';
 import '../components/round_icon_button.dart';
 import 'package:bmi_calculator/calculator_brain.dart';
 import '../components/drawer_item.dart';
+import 'history_page.dart';
 
 //enum is used to make different options much more easier to understand in the code
 enum Gender { male, female }
@@ -42,7 +43,12 @@ class _InputPageState extends State<InputPage> {
                   itemIcon: Icons.history,
                   nameItem: 'History',
                   onPress: () {
-                    print('hello');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HistoryPage(),
+                      ),
+                    );
                   },
                 ),
                 DrawerItem(
