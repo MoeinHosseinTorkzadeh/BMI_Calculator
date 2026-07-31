@@ -8,7 +8,8 @@ class HistoryPageCardDetails extends StatelessWidget {
       required this.height,
       required this.weight,
       required this.age,
-      required this.gender});
+      required this.gender,
+      required this.date});
 
   final double bmi;
   final String category;
@@ -16,7 +17,7 @@ class HistoryPageCardDetails extends StatelessWidget {
   final double weight;
   final int age;
   final String gender;
-
+  final String date;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,77 +26,86 @@ class HistoryPageCardDetails extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           color: kActiveCardColor),
       padding: EdgeInsets.all(10),
-      child: Column(
-        spacing: 15,
+      child: Stack(
         children: [
           Column(
+            spacing: 15,
             children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  padding: EdgeInsets.all(40),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: kHistoryBMIColor),
-                  child: Column(
-                    children: [
-                      Text(
-                        'BMI',
-                        style: kHistoryPageBMIResultStyle,
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      padding: EdgeInsets.all(40),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: kHistoryBMIColor),
+                      child: Column(
+                        children: [
+                          Text(
+                            'BMI',
+                            style: kHistoryPageBMIResultStyle,
+                          ),
+                          Text(
+                            bmi.toString(),
+                            style: kHistoryPageBMIResultNumberStyle,
+                          )
+                        ],
                       ),
-                      Text(
-                        bmi.toString(),
-                        style: kHistoryPageBMIResultNumberStyle,
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
+              Text(category),
+              IntrinsicHeight(
+                child: Row(
+                  spacing: 10,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      spacing: 3,
+                      children: [
+                        Icon(Icons.straighten),
+                        Text('Height'),
+                        Text('${height.toString()} cm')
+                      ],
+                    ),
+                    VerticalDivider(),
+                    Column(
+                      spacing: 3,
+                      children: [
+                        Icon(Icons.scale),
+                        Text('Weight'),
+                        Text('${weight.toString()} kg')
+                      ],
+                    ),
+                    VerticalDivider(),
+                    Column(
+                      spacing: 3,
+                      children: [
+                        Icon(Icons.cake),
+                        Text('Age'),
+                        Text('${age.toString()} yrs')
+                      ],
+                    ),
+                    VerticalDivider(),
+                    Column(
+                      spacing: 3,
+                      children: [
+                        Icon(Icons.person),
+                        Text('Gender'),
+                        Text(gender)
+                      ],
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-          Text(category),
-          IntrinsicHeight(
-            child: Row(
-              spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  spacing: 3,
-                  children: [
-                    Icon(Icons.straighten),
-                    Text('Height'),
-                    Text('${height.toString()} cm')
-                  ],
-                ),
-                VerticalDivider(),
-                Column(
-                  spacing: 3,
-                  children: [
-                    Icon(Icons.scale),
-                    Text('Weight'),
-                    Text('${weight.toString()} kg')
-                  ],
-                ),
-                VerticalDivider(),
-                Column(
-                  spacing: 3,
-                  children: [
-                    Icon(Icons.cake),
-                    Text('Age'),
-                    Text('${age.toString()} yrs')
-                  ],
-                ),
-                VerticalDivider(),
-                Column(
-                  spacing: 3,
-                  children: [
-                    Icon(Icons.person),
-                    Text('Gender'),
-                    Text(gender)
-                  ],
-                ),
-              ],
-            ),
+          Positioned(
+            child: Text(date),
+            top: 0,
+            right: 0,
           )
         ],
       ),
