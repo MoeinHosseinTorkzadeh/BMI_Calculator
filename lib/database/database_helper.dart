@@ -72,7 +72,8 @@ class DatabaseHelper {
   /// Below method is responsible for "R"
   Future<List<BmiRecord>> getAllBMIRecords() async {
     final databaseConnection = await instance.database;
-    final result = await databaseConnection.query('bmi_history');
+    final result = await databaseConnection.query(
+        'bmi_history'); // this is equivalent to SELECT * FROM bmi_history
 
     List<BmiRecord> records = [];
 

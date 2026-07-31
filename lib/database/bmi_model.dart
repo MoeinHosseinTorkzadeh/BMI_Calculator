@@ -41,6 +41,8 @@ class BmiRecord {
 
   //Creating a factory constructor to get data from sql rows
   // This function helps us to read data from a database because flutter does not get the data received from SQLite
+  //Below is a named factory constructor : normally we use this constructor to get data from database and convert them to the dart object
+  //each object represents one row of the table in the database
   factory BmiRecord.fromMap(Map<String, dynamic> map) {
     return BmiRecord(
         id: map['id'],
