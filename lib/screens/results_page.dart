@@ -5,13 +5,23 @@ import '../components/BottomButton.dart';
 
 class ResultsPage extends StatelessWidget {
   ResultsPage(
-      {required this.bmiResult,
+      {required this.bmi,
       required this.interpretation,
-      required this.resultText});
+      required this.category,
+      required this.gender,
+      required this.date,
+      required this.age,
+      required this.weight,
+      required this.height});
 
-  final String bmiResult;
-  final String resultText;
+  final String bmi;
+  final String category;
   final String interpretation;
+  final double height;
+  final double weight;
+  final String date;
+  final int age;
+  final String gender;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +52,11 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    resultText.toUpperCase(),
+                    category.toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    bmiResult,
+                    bmi,
                     style: kBMITextStyle,
                   ),
                   Text(

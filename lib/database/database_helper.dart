@@ -76,7 +76,8 @@ class DatabaseHelper {
     final databaseConnection = await instance.database;
 
     ///making a connection with database
-    final result = await databaseConnection.query('bmi_history');
+    final result = await databaseConnection.query('bmi_history',
+        orderBy: 'id DESC');
     // this is equivalent to SELECT * FROM bmi_history to get and display all data
 
     ///empty list to add record while we loop through

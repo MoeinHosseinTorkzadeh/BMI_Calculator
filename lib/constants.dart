@@ -41,3 +41,5 @@ const kHistoryPageBMIResultStyle = TextStyle(
 
 const kHistoryPageBMIResultNumberStyle =
     TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold);
+
+const kHistoryPageDateTextFormatting = TextStyle(fontSize: 8.0);

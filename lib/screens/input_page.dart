@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/database/bmi_model.dart';
+
 import 'results_page.dart';
 import 'package:flutter/material.dart';
 import '../components/icon_content.dart';
@@ -9,6 +11,7 @@ import '../components/round_icon_button.dart';
 import 'package:bmi_calculator/calculator_brain.dart';
 import '../components/drawer_item.dart';
 import 'history_page.dart';
+import '../database/database_helper.dart';
 
 //enum is used to make different options much more easier to understand in the code
 enum Gender { male, female }
@@ -23,6 +26,7 @@ class _InputPageState extends State<InputPage> {
   int height = 180;
   int weight = 60;
   int age = 18;
+  DateTime? calculationTime;
 
   @override
   Widget build(BuildContext context) {
@@ -256,17 +260,48 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(
               buttonTitle: 'Calculate',
-              onTap: () {
+              onTap: () async {
                 CalculatorBrain calc =
                     CalculatorBrain(weight: weight, height: height);
+
+                ///Formatting the data to make the processing more efficient
+                calculationTime = DateTime.now();
+                String calculateBmi = calc.calculateBMI();
+                String resultCategory = calc.getResult();
+                String resultInterpretation =
+                    calc.getInterpretation();
+                String formattedGender = selectedGender == Gender.male
+                    ? 'Male'
+                    : (selectedGender == Gender.female
+                        ? 'Female'
+                        : 'Not Specified');
+
+                ///Object instantiation
+                BmiRecord newRecord = BmiRecord(
+                  height: height.toDouble(),
+                  weight: weight.toDouble(),
+                  date: calculationTime.toString(),
+                  bmi: double.parse(calculateBmi),
+                  category: resultCategory,
+                  age: age,
+                  gender: formattedGender,
+                );
+
+                ///Execute the database insert query
+                await DatabaseHelper.instance.insertBMI(newRecord);
 
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ResultsPage(
-                      bmiResult: calc.calculateBMI(),
-                      resultText: calc.getResult(),
-                      interpretation: calc.getInterpretation(),
+                      bmi: calculateBmi,
+                      category: resultCategory,
+                      interpretation: resultInterpretation,
+                      height: height.toDouble(),
+                      weight: weight.toDouble(),
+                      gender: formattedGender,
+                      age: age,
+                      date: calculationTime.toString(),
                     ),
                   ),
                 );

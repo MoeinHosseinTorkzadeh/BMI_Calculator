@@ -103,7 +103,10 @@ class HistoryPageCardDetails extends StatelessWidget {
             ],
           ),
           Positioned(
-            child: Text(date),
+            child: Text(
+              date,
+              style: kHistoryPageDateTextFormatting,
+            ),
             top: 0,
             right: 0,
           )
