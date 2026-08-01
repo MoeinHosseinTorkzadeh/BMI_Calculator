@@ -5,19 +5,20 @@ class CategoryItem extends StatelessWidget {
   CategoryItem({
     required this.title,
     required this.details,
-    required this.onPress,
+    this.onPress,
   });
 
   final String title;
   final String details;
-  final VoidCallback onPress;
+  final VoidCallback? onPress;
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       onExpansionChanged: (isExpanded) {
         if (isExpanded) {
-          onPress();
+          ///Using null aware operator we can fix the problem meaning that if there is function call if null do nothing
+          onPress?.call();
         }
       },
       collapsedBackgroundColor: kActiveCardColor,

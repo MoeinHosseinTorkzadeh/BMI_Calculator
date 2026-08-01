@@ -28,7 +28,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
         title: Text('BMI CATEGORIES'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(9.0),
         child: ListView(
           children: [
             Card(
@@ -44,7 +44,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
                     ),
                   ),
                   width: 350,
-                  height: 350,
+                  height: 370,
                   foregroundColor: kBottomContainerColor,
                   progress: _selectedProgress,
                   maxProgress: _maximumProgress,
@@ -53,7 +53,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
               ),
             ),
             SizedBox(
-              height: 8,
+              height: 20,
             ),
             CategoryItem(
               onPress: () => _alterProgress(17.5, '17.5'),
@@ -65,7 +65,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
                   'leading to possible nutrient deficiencies.',
             ),
             SizedBox(
-              height: 8,
+              height: 20,
             ),
             CategoryItem(
                 onPress: () => _alterProgress(21.5, '21.5'),
@@ -74,7 +74,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
                     'Your weight is generally considered appropriate for your height.'
                     ' Most healthy adults fall within this range.'),
             SizedBox(
-              height: 8,
+              height: 20,
             ),
             CategoryItem(
                 onPress: () => _alterProgress(27.5, '27.5'),
@@ -84,7 +84,7 @@ class _BmiCategoriesPageState extends State<BmiCategoriesPage> {
                     ' This often suggests that your body fat percentage is elevated.'
                     ' It is a warning sign to make lifestyle adjustments to prevent further weight gain.'),
             SizedBox(
-              height: 8,
+              height: 20,
             ),
             CategoryItem(
                 onPress: () => _alterProgress(32.5, '32.5'),
