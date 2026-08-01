@@ -29,7 +29,7 @@ class BmiHistoryCard extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
-            child: Text('Error ${snapshot.error}'),
+            child: Text('Something Went Wrong!\n${snapshot.error}'),
           );
         }
 

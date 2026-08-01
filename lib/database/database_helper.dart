@@ -37,6 +37,7 @@ class DatabaseHelper {
     return await openDatabase(
       path,
       version: 1,
+      onCreate: _createDB,
     );
   }
 
