@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/database/bmi_model.dart';
+import 'package:bmi_calculator/screens/bmi_categories_page.dart';
 
 import 'results_page.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,14 @@ class _InputPageState extends State<InputPage> {
                 DrawerItem(
                     itemIcon: Icons.category,
                     nameItem: 'BMI Categories',
-                    onPress: () {}),
+                    onPress: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BmiCategoriesPage(),
+                        ),
+                      );
+                    }),
                 DrawerItem(
                     itemIcon: Icons.tips_and_updates,
                     nameItem: 'Health Tips',

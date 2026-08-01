@@ -43,3 +43,9 @@ const kHistoryPageBMIResultNumberStyle =
     TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold);
 
 const kHistoryPageDateTextFormatting = TextStyle(fontSize: 8.0);
+
+const kProgressBarNumberStyle =
+    TextStyle(fontSize: 100, fontWeight: FontWeight.bold);
+
+const kBMICategoriesTextStyle =
+    TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0);
