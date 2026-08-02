@@ -79,10 +79,6 @@ class _InputPageState extends State<InputPage> {
                         ),
                       );
                     }),
-                DrawerItem(
-                    itemIcon: Icons.scale,
-                    nameItem: 'Units',
-                    onPress: () {}),
               ],
             ),
           ),
