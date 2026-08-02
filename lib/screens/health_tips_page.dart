@@ -19,23 +19,11 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
         padding: const EdgeInsets.all(18.0),
         child: ListView(
           children: [
-            SearchBar(
-              leading: const Icon(Icons.search),
-              backgroundColor:
-                  WidgetStateProperty.all(kBottomContainerColor),
-              padding: WidgetStateProperty.all(
-                EdgeInsets.all(10),
-              ),
-              shape: WidgetStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-              ),
-            ),
             SizedBox(
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(0),
               details: healthTips.values.elementAt(0),
             ),
@@ -43,6 +31,7 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(1),
               details: healthTips.values.elementAt(1),
             ),
@@ -50,6 +39,7 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(2),
               details: healthTips.values.elementAt(2),
             ),
@@ -57,6 +47,7 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(3),
               details: healthTips.values.elementAt(3),
             ),
@@ -64,6 +55,7 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(4),
               details: healthTips.values.elementAt(4),
             ),
@@ -71,6 +63,7 @@ class _HealthTipsPageState extends State<HealthTipsPage> {
               height: 20,
             ),
             CategoryItem(
+              isExpanded: true,
               title: healthTips.keys.elementAt(5),
               details: healthTips.values.elementAt(5),
             )
